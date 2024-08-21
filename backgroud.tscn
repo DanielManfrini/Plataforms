@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cre88jbbidd24"]
+
+[ext_resource type="Texture2D" uid="uid://db4q1sgjfcofk" path="res://fundo.png" id="1_tci4n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3e7l"]
+size = Vector2(1920, 76)
+
+[node name="backgroud" type="Node2D"]
+
+[node name="Fundo" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("1_tci4n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 503)
+shape = SubResource("RectangleShape2D_x3e7l")
