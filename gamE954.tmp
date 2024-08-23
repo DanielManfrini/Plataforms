@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dh2vbjrwpom3f"]
+
+[ext_resource type="PackedScene" uid="uid://cgo1erwuxkyk8" path="res://player.tscn" id="1_2pxfg"]
+[ext_resource type="PackedScene" uid="uid://b05hjosmgkuiy" path="res://background.tscn" id="1_44fun"]
+[ext_resource type="Script" path="res://game.gd" id="1_wkhtp"]
+[ext_resource type="PackedScene" uid="uid://exr3k7t4ot5y" path="res://foreground.tscn" id="3_n8xqg"]
+[ext_resource type="PackedScene" uid="uid://c20g46lnyg5cb" path="res://enemy.tscn" id="4_nnijq"]
+[ext_resource type="Texture2D" uid="uid://bbe6y6oeg7iff" path="res://assets/spike.png" id="5_8ukat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fw2vv"]
+size = Vector2(3335, 2)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_wkhtp")
+
+[node name="Background" parent="." instance=ExtResource("1_44fun")]
+
+[node name="player" parent="." instance=ExtResource("1_2pxfg")]
+unique_name_in_owner = true
+position = Vector2(307, 462)
+
+[node name="Enemy" parent="." instance=ExtResource("4_nnijq")]
+position = Vector2(857, 604)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="GorundLevel" type="CollisionShape2D" parent="Ground"]
+unique_name_in_owner = true
+position = Vector2(634.5, 646)
+shape = SubResource("RectangleShape2D_fw2vv")
+
+[node name="Foreground" parent="." instance=ExtResource("3_n8xqg")]
+
+[node name="spike" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="spike"]
+position = Vector2(742, 520)
+texture = ExtResource("5_8ukat")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="spike"]
+position = Vector2(742, 519)
+polygon = PackedVector2Array(-14, 12, -8, 37, -3, 57, 4, 57, 8, 37, 12, 12, 36, 8, 55, 5, 56, -2, 36, -7, 12, -11, 8, -34, 3, -56, -3, -55, -8, -36, -15, -11, -36, -7, -55, -3, -56, 5, -36, 9)
+
+[connection signal="body_entered" from="spike" to="player" method="_on_area_2d_body_entered"]

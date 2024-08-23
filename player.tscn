@@ -1,73 +1,76 @@
-[gd_scene load_steps=31 format=3 uid="uid://cgo1erwuxkyk8"]
+[gd_scene load_steps=65 format=3 uid="uid://cgo1erwuxkyk8"]
 
+[ext_resource type="Script" path="res://player.gd" id="1_nop38"]
+[ext_resource type="Texture2D" uid="uid://bb48lokg5eni3" path="res://assets/Main Characters/Mask Dude/Double Jump (32x32).png" id="1_w1lxw"]
 [ext_resource type="Texture2D" uid="uid://vn0nate3iucr" path="res://assets/Main Characters/Mask Dude/Idle (32x32).png" id="1_yuuoe"]
+[ext_resource type="Texture2D" uid="uid://ce2svrtpo0j7o" path="res://assets/Main Characters/Mask Dude/Fall (32x32).png" id="2_qvlyr"]
 [ext_resource type="Texture2D" uid="uid://cn8gxsl437x0i" path="res://assets/Main Characters/Mask Dude/Jump (32x32).png" id="2_rgy0g"]
+[ext_resource type="Texture2D" uid="uid://cml32q0k5wp7c" path="res://assets/Main Characters/Mask Dude/Hit (32x32).png" id="3_gmc5k"]
 [ext_resource type="Texture2D" uid="uid://8l87qyci0cet" path="res://assets/Main Characters/Mask Dude/Run (32x32).png" id="3_qucry"]
+[ext_resource type="Texture2D" uid="uid://dkjmr5q305qwk" path="res://assets/0corações.png" id="4_c045o"]
+[ext_resource type="Texture2D" uid="uid://b6jmk06rkmfkx" path="res://assets/1corações.png" id="5_mxjda"]
+[ext_resource type="Texture2D" uid="uid://cfhqdg6o5xtmp" path="res://assets/2corações.png" id="6_hxdwd"]
+[ext_resource type="Texture2D" uid="uid://bd6f14vgvmxtv" path="res://assets/3corações.png" id="7_rnrwi"]
+[ext_resource type="PackedScene" uid="uid://b6dmxavn7w1x1" path="res://gun.tscn" id="11_ionfm"]
+[ext_resource type="Texture2D" uid="uid://bua16kcms5w2n" path="res://assets/UI/Staff_counter_x4.png" id="11_txnbv"]
+[ext_resource type="Texture2D" uid="uid://dud6vs6nawhf2" path="res://assets/UI/Kills_counter_x4.png" id="12_e28da"]
+[ext_resource type="Texture2D" uid="uid://cj8h3aam8v0lo" path="res://assets/Background/Design sem nome (1).png" id="14_bqdii"]
 
-[sub_resource type="GDScript" id="GDScript_wuoe5"]
-script/source = "extends CharacterBody2D
+[sub_resource type="AtlasTexture" id="AtlasTexture_22x0h"]
+atlas = ExtResource("1_w1lxw")
+region = Rect2(0, 0, 32, 32)
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-@onready var sprite = $AnimatedSprite2D
-@onready var IdleColision = $IdleColision
-@onready var hearts = $\"../AnimatedSprite2D\"
+[sub_resource type="AtlasTexture" id="AtlasTexture_83yjn"]
+atlas = ExtResource("1_w1lxw")
+region = Rect2(32, 0, 32, 32)
 
-var lives = 3
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtcmf"]
+atlas = ExtResource("1_w1lxw")
+region = Rect2(64, 0, 32, 32)
 
-var initial_position = Vector2()
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlkf3"]
+atlas = ExtResource("1_w1lxw")
+region = Rect2(96, 0, 32, 32)
 
-func _ready() -> void:
-	initial_position = position
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnp6o"]
+atlas = ExtResource("1_w1lxw")
+region = Rect2(128, 0, 32, 32)
 
-func _physics_process(delta: float) -> void:
-	#animations
-	
-	if(velocity.x > 1 || velocity.x < -1):
-		sprite.animation = \"walking\"
-	else:
-		sprite.animation = \"idle\"
-	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-		sprite.animation = \"jump\"
-		
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj1gq"]
+atlas = ExtResource("1_w1lxw")
+region = Rect2(160, 0, 32, 32)
 
-	# Handle jump.
-	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	if Input.is_action_just_pressed(\"moveUp\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+[sub_resource type="AtlasTexture" id="AtlasTexture_2de16"]
+atlas = ExtResource("2_qvlyr")
+region = Rect2(0, 0, 32, 32)
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygqwl"]
+atlas = ExtResource("3_gmc5k")
+region = Rect2(0, 0, 32, 32)
 
-	move_and_slide()
-	
-	var isLeft = velocity.x < 0
-	sprite.flip_h = isLeft
-	
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	
-	if(lives > 0):
-		print(lives)
-		lives = lives - 1
-		
-		if(lives == 2):
-			hearts.animation = \"2lives\"
-		if(lives == 1):
-			hearts.animation = \"1lives\"
-		if(lives == 0):
-			hearts.animation = \"0lives\"
-			
-		position = initial_position
-"
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tbvd"]
+atlas = ExtResource("3_gmc5k")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3raof"]
+atlas = ExtResource("3_gmc5k")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk2p1"]
+atlas = ExtResource("3_gmc5k")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvh6u"]
+atlas = ExtResource("3_gmc5k")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18iq5"]
+atlas = ExtResource("3_gmc5k")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crat1"]
+atlas = ExtResource("3_gmc5k")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4qitj"]
 atlas = ExtResource("1_yuuoe")
@@ -167,14 +170,61 @@ region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pglqg"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22x0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83yjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtcmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlkf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnp6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj1gq")
+}],
 "loop": true,
-"name": &"crouch",
+"name": &"double_jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2de16")
+}],
+"loop": true,
+"name": &"fall",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygqwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tbvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3raof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk2p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvh6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18iq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crat1")
+}],
 "loop": true,
-"name": &"crouch_walking",
+"name": &"hit",
 "speed": 5.0
 }, {
 "frames": [{
@@ -213,7 +263,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 2.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -221,7 +271,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -262,20 +312,179 @@ animations = [{
 }],
 "loop": true,
 "name": &"walking",
-"speed": 5.0
+"speed": 11.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7k8n"]
-size = Vector2(24, 28)
+size = Vector2(49, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giux0"]
+atlas = ExtResource("4_c045o")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o11im"]
+atlas = ExtResource("4_c045o")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4rn8"]
+atlas = ExtResource("5_mxjda")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_177tb"]
+atlas = ExtResource("5_mxjda")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnr3n"]
+atlas = ExtResource("6_hxdwd")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbs2h"]
+atlas = ExtResource("6_hxdwd")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8eb4"]
+atlas = ExtResource("7_rnrwi")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jivp"]
+atlas = ExtResource("7_rnrwi")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gv5r0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giux0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o11im")
+}],
+"loop": true,
+"name": &"0lives",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4rn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_177tb")
+}],
+"loop": true,
+"name": &"1lives",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnr3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbs2h")
+}],
+"loop": true,
+"name": &"2lives",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8eb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jivp")
+}],
+"loop": true,
+"name": &"3lives",
+"speed": 2.0
+}]
 
 [node name="player" type="CharacterBody2D"]
-script = SubResource("GDScript_wuoe5")
+position = Vector2(785, 476)
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("1_nop38")
+
+[node name="PlayerCam" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(15, -26)
+limit_top = 0
+limit_bottom = 0
+drag_vertical_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_pglqg")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="IdleColision" type="CollisionShape2D" parent="."]
-position = Vector2(2, 2)
+position = Vector2(4.5, 8.5)
 shape = SubResource("RectangleShape2D_i7k8n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Interface" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Topo" type="NinePatchRect" parent="CanvasLayer/Interface"]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 290.0
+texture = ExtResource("14_bqdii")
+
+[node name="Fundo" type="NinePatchRect" parent="CanvasLayer/Interface"]
+layout_mode = 0
+offset_left = 1600.0
+offset_top = 900.0
+offset_right = 3200.0
+offset_bottom = 1190.0
+rotation = 3.14159
+texture = ExtResource("14_bqdii")
+
+[node name="Hearts" type="AnimatedSprite2D" parent="CanvasLayer/Interface"]
+unique_name_in_owner = true
+position = Vector2(1538, 32)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_gv5r0")
+animation = &"3lives"
+autoplay = "3lives"
+
+[node name="EnergyCounter" type="NinePatchRect" parent="CanvasLayer/Interface"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+texture = ExtResource("11_txnbv")
+
+[node name="Label" type="Label" parent="CanvasLayer/Interface/EnergyCounter"]
+layout_mode = 0
+offset_left = 17.5
+offset_top = 14.0
+offset_right = 27.5
+offset_bottom = 37.0
+scale = Vector2(0.5, 0.5)
+text = "0"
+
+[node name="KillsCounter" type="NinePatchRect" parent="CanvasLayer/Interface"]
+layout_mode = 0
+offset_left = 85.0
+offset_right = 125.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+texture = ExtResource("12_e28da")
+
+[node name="Label" type="Label" parent="CanvasLayer/Interface/KillsCounter"]
+layout_mode = 0
+offset_left = 17.5
+offset_top = 14.0
+offset_right = 27.5
+offset_bottom = 37.0
+scale = Vector2(0.5, 0.5)
+text = "0"
+
+[node name="Gun" parent="." instance=ExtResource("11_ionfm")]
+position = Vector2(6, -34)
+rotation = 0.316616

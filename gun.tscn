@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6dmxavn7w1x1"]
+
+[ext_resource type="Script" path="res://gun.gd" id="1_2nfn7"]
+[ext_resource type="Texture2D" uid="uid://cx2qg66v2bre5" path="res://assets/Weapons/Staff4.png" id="2_3d6qu"]
+[ext_resource type="Texture2D" uid="uid://dcq35e65h1wl6" path="res://assets/Particles/Blue.png" id="3_7wr8j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i7byv"]
+radius = 32.1403
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p5eas"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[node name="Gun" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_2nfn7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i7byv")
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="Lance" type="Sprite2D" parent="Pivot"]
+rotation = 1.5708
+texture = ExtResource("2_3d6qu")
+
+[node name="ShotingPoint" type="Marker2D" parent="Pivot/Lance"]
+unique_name_in_owner = true
+position = Vector2(0.0584988, -44)
+rotation = 4.71239
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(38, -2)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_p5eas")
+texture = ExtResource("3_7wr8j")
+lifetime = 3.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(47, -1)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_p5eas")
+texture = ExtResource("3_7wr8j")
+lifetime = 3.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+position = Vector2(43, 1)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_p5eas")
+texture = ExtResource("3_7wr8j")
+lifetime = 3.0
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

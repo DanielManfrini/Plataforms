@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://deiy63iqigkf4"]
+
+[ext_resource type="Script" path="res://EnemyGun.gd" id="1_5w6p0"]
+[ext_resource type="Texture2D" uid="uid://6oaqmammy2ps" path="res://assets/Weapons/RedStaff.png" id="2_v8b4c"]
+[ext_resource type="Texture2D" uid="uid://c8nh5mab1jtiu" path="res://assets/Particles/Red.png" id="3_6kti1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ot0n"]
+radius = 32.1403
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4skn"]
+atlas = ExtResource("2_v8b4c")
+region = Rect2(0, 0, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcqcx"]
+atlas = ExtResource("2_v8b4c")
+region = Rect2(0, 256, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fptuf"]
+atlas = ExtResource("2_v8b4c")
+region = Rect2(0, 512, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs07q"]
+atlas = ExtResource("2_v8b4c")
+region = Rect2(0, 768, 128, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rf33y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4skn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcqcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fptuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs07q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_40ovt"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[node name="EnemyGun" type="Area2D"]
+script = ExtResource("1_5w6p0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2ot0n")
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="RedStaff" type="AnimatedSprite2D" parent="Pivot"]
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_rf33y")
+animation = &"idle"
+frame_progress = 0.460957
+
+[node name="RedStaffShotingPoint" type="Marker2D" parent="Pivot/RedStaff"]
+unique_name_in_owner = true
+position = Vector2(-0.000282347, -78)
+rotation = -1.5708
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(82, 9)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_40ovt")
+texture = ExtResource("3_6kti1")
+lifetime = 3.0
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

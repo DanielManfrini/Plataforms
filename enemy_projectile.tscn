@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ciolm358goq6c"]
+
+[ext_resource type="Script" path="res://enemy_projectile.gd" id="1_7av05"]
+[ext_resource type="Texture2D" uid="uid://bgis7eyhmx5yk" path="res://assets/Particles/Red_energy.png" id="2_3xkfb"]
+[ext_resource type="Texture2D" uid="uid://c8nh5mab1jtiu" path="res://assets/Particles/Red.png" id="3_fjvur"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e0lf"]
+size = Vector2(11.9999, 19.9999)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ew7u4"]
+gravity = Vector3(0, 98, 0)
+
+[node name="EnemyProjectile" type="Area2D"]
+top_level = true
+script = ExtResource("1_7av05")
+
+[node name="Lance" type="Sprite2D" parent="."]
+rotation = 1.57498
+texture = ExtResource("2_3xkfb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.00311, -0.00170281)
+rotation = 1.56854
+shape = SubResource("RectangleShape2D_2e0lf")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-11, 2)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_ew7u4")
+texture = ExtResource("3_fjvur")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

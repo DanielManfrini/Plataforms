@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6dmxavn7w1x1"]
+
+[ext_resource type="Script" path="res://gun.gd" id="1_2nfn7"]
+[ext_resource type="Texture2D" uid="uid://dchm05fcrm5is" path="res://assets/Weapons/Lance.png" id="1_n8ljd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i7byv"]
+radius = 344.013
+
+[node name="Gun" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_2nfn7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i7byv")
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="Lance" type="Sprite2D" parent="Pivot"]
+position = Vector2(32, 0)
+rotation = 1.26123
+texture = ExtResource("1_n8ljd")
+
+[node name="ShotingPoint" type="Marker2D" parent="Pivot/Lance"]
+unique_name_in_owner = true
+position = Vector2(-0.00367884, -26.2488)

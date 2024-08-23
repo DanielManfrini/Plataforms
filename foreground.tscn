@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://exr3k7t4ot5y"]
+
+[ext_resource type="Texture2D" uid="uid://btr7xuhif24gk" path="res://assets/Background/grass(6).png" id="1_pcl12"]
+
+[node name="Foreground" type="CanvasLayer"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 128
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(584, 581)
+motion_scale = Vector2(2, 2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4"]
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4/TextureRect"]
+position = Vector2(-265, -35)
+scale = Vector2(2, 2)
+texture = ExtResource("1_pcl12")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4/TextureRect"]
+position = Vector2(375, -35)
+scale = Vector2(2, 2)
+texture = ExtResource("1_pcl12")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4/TextureRect"]
+position = Vector2(1015, -35)
+scale = Vector2(2, 2)
+texture = ExtResource("1_pcl12")

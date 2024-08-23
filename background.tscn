@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=3 uid="uid://b05hjosmgkuiy"]
+
+[ext_resource type="Texture2D" uid="uid://b7diqtm0yqoi4" path="res://assets/parallax_forest_pack/layers/parallax-forest-back-trees.png" id="1_3lh3d"]
+[ext_resource type="Texture2D" uid="uid://cnlumxlfqkaul" path="res://assets/parallax_forest_pack/layers/parallax-forest-middle-trees.png" id="2_867rk"]
+[ext_resource type="Texture2D" uid="uid://b5kiu0i58q1jl" path="res://assets/parallax_forest_pack/layers/parallax-forest-lights.png" id="3_h3n83"]
+[ext_resource type="Texture2D" uid="uid://1eiuw7rbpvvv" path="res://assets/parallax_forest_pack/layers/parallax-forest-front-trees.png" id="4_tme0j"]
+
+[node name="Background" type="CanvasLayer"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_offset = Vector2(500, 0)
+motion_mirroring = Vector2(1632, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/TextureRect"]
+position = Vector2(271, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("1_3lh3d")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/TextureRect"]
+position = Vector2(815, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("1_3lh3d")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/TextureRect"]
+position = Vector2(1359, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("1_3lh3d")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1632, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2/TextureRect"]
+position = Vector2(271, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("2_867rk")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2/TextureRect"]
+position = Vector2(815, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("2_867rk")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2/TextureRect"]
+position = Vector2(1359, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("2_867rk")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1632, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3"]
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/TextureRect"]
+position = Vector2(271, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("3_h3n83")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/TextureRect"]
+position = Vector2(815, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("3_h3n83")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/TextureRect"]
+position = Vector2(1359, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("3_h3n83")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1632, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4"]
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4/TextureRect"]
+position = Vector2(271, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("4_tme0j")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4/TextureRect"]
+position = Vector2(815, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("4_tme0j")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4/TextureRect"]
+position = Vector2(1359, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("4_tme0j")
