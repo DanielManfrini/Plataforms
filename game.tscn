@@ -58,8 +58,8 @@ animations = [{
 }]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_pql55"]
-a = Vector2(-48, -4)
-b = Vector2(1861, -5)
+a = Vector2(-1036, -2)
+b = Vector2(2413, -4)
 
 [sub_resource type="Curve2D" id="Curve2D_6do2m"]
 _data = {
@@ -109,17 +109,17 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left_barrier"]
-position = Vector2(-1.40667e-05, -1.14739e-06)
+position = Vector2(-266.367, -1.14739e-06)
 scale = Vector2(1, 1.08935)
 shape = SubResource("RectangleShape2D_bkv6c")
 
 [node name="Left_Map_end" type="Area2D" parent="Left_barrier"]
+position = Vector2(-246.451, -0.266152)
 collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left_barrier/Left_Map_end"]
 position = Vector2(115.135, 0.133072)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dkhxa")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Left_barrier"]
@@ -130,7 +130,7 @@ position = Vector2(102, 454)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_clrja")
 autoplay = "default"
-frame_progress = 0.201628
+frame_progress = 0.388023
 
 [node name="Rigth_barrier" type="StaticBody2D" parent="."]
 position = Vector2(1590, 448)
@@ -139,18 +139,17 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rigth_barrier"]
-position = Vector2(-1.40667e-05, -1.14739e-06)
+position = Vector2(275.08, -1.19209e-06)
 scale = Vector2(1, 1.08935)
 shape = SubResource("RectangleShape2D_bkv6c")
 
 [node name="Rigth_Map_end" type="Area2D" parent="Rigth_barrier"]
-position = Vector2(-230.27, 0.133077)
+position = Vector2(23.6494, 0.266153)
 collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rigth_barrier/Rigth_Map_end"]
 position = Vector2(115.135, 0.133072)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dkhxa")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Rigth_barrier"]
@@ -161,7 +160,7 @@ position = Vector2(1501, 454)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_pa0dn")
 autoplay = "default"
-frame_progress = 0.777607
+frame_progress = 0.964001
 
 [node name="Ground" type="StaticBody2D" parent="."]
 collision_layer = 5
@@ -172,7 +171,7 @@ position = Vector2(-101, 616)
 shape = SubResource("SegmentShape2D_pql55")
 
 [node name="Rigth_Path" type="Path2D" parent="Ground"]
-position = Vector2(2, -87)
+position = Vector2(545, -67)
 curve = SubResource("Curve2D_6do2m")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Ground/Rigth_Path"]
@@ -180,7 +179,7 @@ position = Vector2(1758, 606)
 rotation = -3.13501
 
 [node name="Left_Path" type="Path2D" parent="Ground"]
-position = Vector2(0, -62)
+position = Vector2(-973, -68)
 curve = SubResource("Curve2D_pumwo")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Ground/Left_Path"]
